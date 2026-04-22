@@ -26,7 +26,8 @@ public class BuildYourOwnAdventure {
            String lines = bufferedReader.readLine();
 
            // reads the .csv file
-           while((lines = bufferedReader.readLine()) != null) {
+           while((lines = bufferedReader.readLine()) != null)
+           {
                System.out.println();
                System.out.println(lines);
            }
