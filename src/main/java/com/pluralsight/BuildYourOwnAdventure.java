@@ -17,8 +17,7 @@ public class BuildYourOwnAdventure {
     // function that reads the .csv
     public static void loadAdventure()
     {
-       try
-       {
+       try {
            FileReader fileReader = new FileReader("adventure1.csv");
            BufferedReader bufferedReader = new BufferedReader(fileReader);
 
@@ -26,8 +25,7 @@ public class BuildYourOwnAdventure {
            String lines = bufferedReader.readLine();
 
            // reads the .csv file
-           while((lines = bufferedReader.readLine()) != null)
-           {
+           while ((lines = bufferedReader.readLine()) != null) {
 
                // array to columns the .csv into columns
                String[] columns = lines.split("\\|");
@@ -38,13 +36,14 @@ public class BuildYourOwnAdventure {
                String option2Text = columns[4];
                int option2NextId = Integer.parseInt(columns[5]);
 
-               // creates storystep object
-               StoryStep storystep = new StoryStep(id, storyText, option1Text,
+
+               // creates storyStep object
+               StoryStep storyStep = new StoryStep(id, storyText, option1Text,
                        option1NextId, option2Text, option2NextId);
 
-               System.out.println(storystep.getStoryText());
-
+               System.out.println(storyStep.getStoryText());
            }
+
 
            // closes the file
            bufferedReader.close();
