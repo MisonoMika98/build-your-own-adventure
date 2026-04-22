@@ -1,10 +1,11 @@
 package com.pluralsight;
 
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 
+
 public class BuildYourOwnAdventure {
+
     static void main()
     {
      loadAdventure();
@@ -24,8 +25,9 @@ public class BuildYourOwnAdventure {
            // skips the header
            String lines = bufferedReader.readLine();
 
-           // reads the file
+           // reads the .csv file
            while((lines = bufferedReader.readLine()) != null) {
+               System.out.println();
                System.out.println(lines);
            }
 
@@ -38,5 +40,7 @@ public class BuildYourOwnAdventure {
            System.out.println(ex.getMessage());
        }
     }
+
+
 }
 
