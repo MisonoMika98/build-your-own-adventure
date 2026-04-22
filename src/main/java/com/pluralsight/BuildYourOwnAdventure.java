@@ -29,15 +29,14 @@ public class BuildYourOwnAdventure {
            while((lines = bufferedReader.readLine()) != null)
            {
 
-               // array to split the .csv into columns
-
-               String[] split = lines.split("\\|");
-               int id = Integer.parseInt(split[0]);
-               String storyText = split[1];
-               String option1Text = split[2];
-               int option1NextId = Integer.parseInt(split[3]);
-               String option2Text = split[4];
-               int option2NextId = Integer.parseInt(split[5]);
+               // array to columns the .csv into columns
+               String[] columns = lines.split("\\|");
+               int id = Integer.parseInt(columns[0]);
+               String storyText = columns[1];
+               String option1Text = columns[2];
+               int option1NextId = Integer.parseInt(columns[3]);
+               String option2Text = columns[4];
+               int option2NextId = Integer.parseInt(columns[5]);
 
                // creates storystep object
                StoryStep storystep = new StoryStep(id, storyText, option1Text,
