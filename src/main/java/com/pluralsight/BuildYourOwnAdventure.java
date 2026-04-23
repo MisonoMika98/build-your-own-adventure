@@ -6,7 +6,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-public class BuildYourOwnAdventure {
+public class BuildYourOwnAdventure
+{
+    static Scanner userInput = new Scanner(System.in);
+
     // static and at top of class so it can run it static functions and out of scope
     static ArrayList<StoryStep> steps;
 
@@ -18,7 +21,7 @@ public class BuildYourOwnAdventure {
 
     public static void homeScreen()
     {
-        Scanner userInput = new Scanner(System.in);
+
         System.out.println();
         System.out.println("Welcome to your adventure!");
         System.out.println("--------------------------------------------------------");
@@ -26,7 +29,9 @@ public class BuildYourOwnAdventure {
         System.out.println("Enter (Q) to Quit");
         System.out.println("===================");
         String selection = userInput.nextLine().toUpperCase().trim();
+
         // user input options
+
         if (selection.equals("P")) {
             gameScreen(1);
         }
@@ -45,21 +50,58 @@ public class BuildYourOwnAdventure {
 
     public static void gameScreen(int id)
     {
-        // gets arraylist size
-        for (int i = 0; i < steps.size(); i++) {
-            StoryStep step = steps.get(i);
-            // compares id getter to id in the array list
-            if (step.getId() == id) {
+        int nextId = id;
+
+        while (nextId != -1)
+        {
+            StoryStep step = findStep(nextId);
+
+            if (step == null)
+            {
+                System.out.println();
+                System.out.println("An error occurred. Step not found.");
+            }
+            else
+            {
                 System.out.println();
                 System.out.println("Story Text: " + step.getStoryText());
                 System.out.println();
                 System.out.println("1) " + step.getOption1Text());
                 System.out.println();
                 System.out.println("2) " + step.getOption2Text());
+                System.out.println();
+                System.out.print("Make a selection (1 or 2): ");
+
+                String optionSelect = userInput.nextLine().strip().toLowerCase();
+
+                switch (optionSelect)
+                {
+                    case "1":
+                        nextId = step.getOption1NextId();
+                        break;
+
+                    case "2":
+                        nextId = step.getOption2NextId();
+                        break;
+                }
             }
         }
     }
 
+    // function that looks for the steps inside array list
+    public static StoryStep findStep(int id)
+    {
+        // gets arraylist size
+        for (int i = 0; i < steps.size(); i++)
+        {
+            StoryStep step = steps.get(i);
+            if (step.getId() == id)
+            {
+                return step;
+            }
+        }
+        return null;
+    }
 
     // function that reads the .csv and stores data
     public static ArrayList <StoryStep> loadAdventure()
